@@ -70,7 +70,7 @@ import { AuthContext } from '../context/AuthContext'
                 </div>
                 <div className='postCenter'>
                     <span className='postText'>{post?.desc}</span>
-                    <img className='postTextImg' src={PF + post.img} alt=''></img>
+                    <img className='postTextImg' src={ PF + post.img} alt=''></img>
                 </div>
                 <div className='postBottom'>
                     <div className='postButtonLeft'>

@@ -9,3 +9,11 @@ export const LoginFailure = () =>({
     type:"LOGIN_FAILURE",
     // paylod:error
 })
+export const Folow = (userId) =>({
+    type: "FOLLOW",
+    paylod: userId,
+})
+export const Unfollow = (userId) =>({
+    type: "UNFOLLOW",
+    paylod: userId,
+})

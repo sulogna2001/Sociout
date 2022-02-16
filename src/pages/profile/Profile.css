@@ -52,3 +52,18 @@
 .profileRightBottom{
     display: flex;
 }
+.editCover{
+    position: absolute;
+    margin-top: 220px;
+    color: white;
+    margin-left: 5px;
+}
+.editProfilePicture{
+    margin-left: 770px;
+}
+.saveButton{
+    position: absolute;
+    margin-top: 220px;
+    color: black;
+    margin-left: 30px;
+}
