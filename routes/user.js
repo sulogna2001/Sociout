@@ -7,7 +7,7 @@ const router=require('express').Router()
 // })
 
 // update user
-router.put("/:id", async(req,res) =>{
+router.post("/:id/update", async(req,res) =>{
     if(req.body.userId === req.params.id || req.body.isAdmin){
         if(req.body.password){
             try{
@@ -46,6 +46,26 @@ router.delete('/:id' ,async (req,res) =>{
     }
     else{
         return res.status(403).json('You can delete only your accoount')
+    }
+})
+//get friends
+router.get("/friends/:userId" ,async(req,res) =>{
+    try{
+        const user=await User.findById(req.params.userId);
+        const friends = await Promise.all(
+            user.followings.map((friendId) =>{
+                return User.findById(friendId);
+            })
+        );
+        let friendsList=[];
+        friends.map((friend) =>{
+            const {_id,username,profilePicture} =friend;
+            friendsList.push({_id,username,profilePicture});
+        })
+        res.status(200).json(friendsList);
+    }
+    catch(err){
+        res.status(400).json(err);
     }
 })
 //get a user

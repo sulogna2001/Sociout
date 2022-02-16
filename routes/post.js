@@ -4,6 +4,7 @@ const User = require("../models/User");
 
 //create post
 router.post("/", async (req, res) => {
+  
   const newPost = new Post(req.body);
   try {
     const savedPost = await newPost.save();
