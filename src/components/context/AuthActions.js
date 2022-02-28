@@ -17,3 +17,7 @@ export const Unfollow = (userId) =>({
     type: "UNFOLLOW",
     paylod: userId,
 })
+// export const Delete = (userId) =>({
+//     type: "DELETE",
+//     paylod: userId,
+// })

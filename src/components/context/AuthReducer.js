@@ -37,7 +37,6 @@ const AuthReducer=(state,action) =>{
                 ),
               },
             }
-          
         default:
             return state;
     }

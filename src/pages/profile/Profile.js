@@ -40,6 +40,7 @@ const Profile = () => {
   //   const closeModal = () => {
   //     setModalIsOpen(false);
   //   };
+  console.log("userfrom profile", user);
   const submitHandler = async (e) => {
     e.preventDefault();
 
@@ -60,27 +61,21 @@ const Profile = () => {
       } catch (err) {
         console.log(err);
       }
-    } 
-    // else if (profilePic) {
-    //   const data = new FormData();
-    //   const fileName = Date.now() + file.name;
-    //   data.append("name", fileName);
-    //   data.append("file", file);
-    //   updatedProfile.profilePic = fileName;
-    //   console.log(updatedProfile);
-
-    //   try {
-    //     await axios.post(Api + "/upload", data);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // }
+    }
 
     try {
-      await axios.post(Api + "/user/" + user._id + "/update", updatedProfile, {
-        userId: currentUser._id,
-      });
-      // await axios.post(Api + "/posts/"+post._id+"/like",{userId:currentUser._id})
+      await axios.put(
+        Api + "/user/" + currentUser._id + "/update",
+        updatedProfile,
+        {
+          userId: currentUser._id,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       // window.location.reload()
       console.log(updatedProfile);
       console.log(file);
@@ -103,46 +98,48 @@ const Profile = () => {
                 <button onClick={closeModal}>x</button>
                 <h6>modal opened</h6>
               </Modal> */}
-              <form className="editWrapper" onSubmit={submitHandler}>
-                <div className="Options">
-                  <label htmlFor="file" className="editOption">
-                    <CameraAlt htmlColor="Black" className="editCover" />
-                    <input
-                      style={{ display: "none" }}
-                      type="file"
-                      name="file"
-                      id="file"
-                      accept=".jpg,.png,.jpeg"
-                      onChange={(e) => setFile(e.target.files[0])}
-                    ></input>
-                  </label>
-                </div>
-                <button className="saveButton" type="submit">
-                  Save
-                </button>
+              {user.username === currentUser.username && (
+                <form className="editWrapper" onSubmit={submitHandler}>
+                  <div className="Options">
+                    <label htmlFor="file" className="editOption">
+                      <CameraAlt htmlColor="Black" className="editCover" />
+                      <input
+                        style={{ display: "none" }}
+                        type="file"
+                        name="file"
+                        id="file"
+                        accept=".jpg,.png,.jpeg"
+                        onChange={(e) => setFile(e.target.files[0])}
+                      ></input>
+                    </label>
+                  </div>
+                  <button className="saveButton" type="submit">
+                    Save
+                  </button>
 
-                <img
-                  src={
-                    user.coverPicture
-                      ? PF + user.coverPicture
-                      : PF + "person/cover.jpg"
-                  }
-                  alt=""
-                  className="profileCoverImg"
-                ></img>
+                </form>
+                
+              )}
+                  {/* <Edit htmlColor="Black" className="editProfilePicture" /> */}
 
-                    <Edit htmlColor="Black" className="editProfilePicture" />
-                 
-                <img
-                  src={
-                    user.profilePicture
-                      ? PF + user.profilePicture
-                      : PF + "person/noAvatar.png"
-                  }
-                  alt=""
-                  className="profileUserImg"
-                ></img>
-              </form>
+              <img
+                src={
+                  user.coverPicture
+                    ? PF + user.coverPicture
+                    : PF + "person/cover.jpg"
+                }
+                alt=""
+                className="profileCoverImg"
+              ></img>
+              <img
+                src={
+                  user.profilePicture
+                    ? PF + user.profilePicture
+                    : PF + "person/noAvatar.png"
+                }
+                alt=""
+                className="profileUserImg"
+              ></img>
             </div>
             <div className="profileInfo">
               <h4 className="profileInfoName">{user.username}</h4>

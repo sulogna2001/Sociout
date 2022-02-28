@@ -15,7 +15,7 @@ import { AuthContext } from '../context/AuthContext'
              const res = username ? 
              await axios.get(Api + "/posts/profile/"+username):
              await axios.get(Api + "/posts/timeline/"+ user._id);
-            //  console.log(res);s
+             console.log(res);
              setPosts(
                  res.data.sort((p1,p2) => {
                      return new Date(p2.createdAt) - new Date(p1.createdAt);

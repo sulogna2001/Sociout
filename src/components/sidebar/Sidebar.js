@@ -48,14 +48,14 @@ import CloseFriends from '../closeFriends/CloseFriends'
 
 
                 </ul>
-                <button className='sidebar-button'>Show More</button>
-                <hr className="sidebar-hr"></hr>
-                <ul className="sidebarFriendList">
+                {/* <button className='sidebar-button'>Show More</button>
+                <hr className="sidebar-hr"></hr> */}
+                {/* <ul className="sidebarFriendList">
                     
                     {Users.map( u =>(
                         <CloseFriends key={u.id} user ={u}/>
                     ))}
-                </ul>
+                </ul> */}
             </div>
         </div>
     )
